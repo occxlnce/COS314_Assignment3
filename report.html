@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COS314 Assignment 3 Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1, h2, h3 { color: #003366; }
+        table { border-collapse: collapse; width: 80%; margin-bottom: 20px; }
+        th, td { border: 1px solid #b0c4de; padding: 8px 12px; text-align: center; }
+        th { background-color: #b0c4de; }
+        .section { margin-bottom: 32px; }
+        .note { color: #888; font-size: 0.95em; }
+    </style>
+</head>
+<body>
+    <h1>COS314 Assignment 3 Report</h1>
+
+    <div class="section">
+        <h2>Executive Summary</h2>
+        <p>
+            This report investigates the use of three machine learning models—<b>Genetic Programming (GP)</b>, <b>Multi-Layer Perceptron (MLP)</b>, and <b>Decision Tree (J48)</b>—for classifying stock purchase decisions based on historical Bitcoin trading data. The aim is to compare symbolic, neural, and rule-based approaches for interpretable and effective stock trading strategies. GP was implemented from scratch, while MLP and J48 are planned for future integration.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Data Description & Insights</h2>
+        <p>
+            The datasets (<code>BTC_train.csv</code> and <code>BTC_test.csv</code>) contain rows of historical Bitcoin trading data. Each row represents a time step with columns for technical indicators (e.g., open, high, low, close, volume) and a binary target label (0 = No Buy, 1 = Buy).
+        </p>
+        <ul>
+            <li><b>Feature Ranges:</b> Features are normalized or on a similar scale, suitable for ML algorithms.</li>
+            <li><b>Label Distribution:</b> [Analyze with a script or visually; if imbalanced, use F1-score for fair assessment.]</li>
+            <li><b>Insights:</b> Feature correlation analysis or tree-based feature importances can reveal which indicators influence buy decisions. Outliers or missing values should be checked.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Model Design Specifications</h2>
+        <h3>Genetic Programming (GP)</h3>
+        <ul>
+            <li><b>Representation:</b> Individuals are arithmetic expression trees (+, -, *, /) with feature variables and random constants.</li>
+            <li><b>Population:</b> Randomly initialized trees, evolved over generations.</li>
+            <li><b>Selection:</b> Tournament selection (size 3).</li>
+            <li><b>Crossover & Mutation:</b> Subtree operations.</li>
+            <li><b>Fitness:</b> Accuracy (default) or F1-score.</li>
+            <li><b>Termination:</b> Fixed number of generations (e.g., 30).</li>
+            <li><b>Prediction:</b> Best individual used for classification.</li>
+            <li><b>Robustness:</b> Handles division by zero and tree bloat.</li>
+            <li><b>Reproducibility:</b> User-defined seed.</li>
+        </ul>
+        <h3>Multi-Layer Perceptron (MLP)</h3>
+        <ul>
+            <li><b>Architecture:</b> [Stub; to be implemented]</li>
+            <li><b>Training:</b> [Stub; to be implemented]</li>
+            <li><b>Prediction:</b> [Stub; to be implemented]</li>
+        </ul>
+        <h3>Decision Tree (J48)</h3>
+        <ul>
+            <li><b>Algorithm:</b> J48 (C4.5) [Stub; to be implemented]</li>
+            <li><b>Splitting:</b> Information gain.</li>
+            <li><b>Prediction:</b> [Stub; to be implemented]</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Results Table</h2>
+        <table>
+            <tr>
+                <th rowspan="2">Model</th>
+                <th rowspan="2">Seed value</th>
+                <th colspan="2">Training</th>
+                <th colspan="2">Testing</th>
+            </tr>
+            <tr>
+                <th>Acc</th>
+                <th>F1</th>
+                <th>Acc</th>
+                <th>F1</th>
+            </tr>
+            <tr>
+                <td><b>Genetic Programming</b></td>
+                <td>42</td>
+                <td>0.2776</td>
+                <td>0.0777</td>
+                <td>0.2776</td>
+                <td>0.0777</td>
+            </tr>
+            <tr>
+                <td><b>MLP</b></td>
+                <td>42</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+            </tr>
+            <tr>
+                <td><b>Decision Tree</b></td>
+                <td>42</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+            </tr>
+        </table>
+        <div class="note">Figure 1: Results Table</div>
+    </div>
+
+    <div class="section">
+        <h2>Analysis & Interpretation</h2>
+        <ul>
+            <li><b>GP Performance:</b> The GP model achieved an accuracy of 0.2776 and F1-score of 0.0777 on both training and test data. This indicates that, for this dataset and parameter setting, the evolved expressions have limited predictive power. This could be due to data complexity, class imbalance, or insufficient generations/population size.</li>
+            <li><b>Patterns:</b> The best evolved expression can be analyzed for interpretability. However, low F1-score suggests the model struggles with minority class detection.</li>
+            <li><b>Recommendations:</b> Consider tuning GP hyperparameters, engineering new features, or balancing the dataset for improved performance. Compare with MLP and Decision Tree once implemented.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Statistical Test: Wilcoxon Signed-Rank Test</h2>
+        <p>To evaluate the significance of performance differences between GP and MLP, a Wilcoxon signed-rank test will be performed on their predictions for the test set.</p>
+        <ul>
+            <li><b>Null hypothesis:</b> No significant difference in performance between GP and MLP.</li>
+            <li><b>Test statistic:</b> <span class="note">[To be filled after running the test]</span></li>
+            <li><b>p-value:</b> <span class="note">[To be filled after running the test]</span></li>
+            <li><b>Conclusion:</b> <span class="note">[Reject/Do not reject null hypothesis at α = 0.05]</span></li>
+        </ul>
+        <div class="note">Note: This test requires both GP and MLP predictions. Once MLP is implemented, run the test using your Java implementation or a statistical tool.</div>
+    </div>
+
+    <div class="section">
+        <h2>Conclusions & Next Steps</h2>
+        <ul>
+            <li><b>Interpretation:</b> The GP model’s results suggest challenges in modeling this financial data with symbolic regression alone. Further work is needed to improve performance.</li>
+            <li><b>Business Value:</b> Symbolic models like GP offer transparency, but may require more expressive features or integration with other approaches for better results in real-world trading.</li>
+            <li><b>Next Steps:</b> Complete MLP and Decision Tree implementations, perform the Wilcoxon test, and refine models based on comparative analysis.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Genetic Programming (GP) Design Specification</h2>
+        <ul>
+            <li><b>Representation:</b> Individuals are expression trees using the operators +, -, *, /, with variables for each feature and random constants.</li>
+            <li><b>Population Initialization:</b> Random trees up to a maximum depth.</li>
+            <li><b>Selection:</b> Tournament selection (size 3).</li>
+            <li><b>Crossover:</b> Subtree crossover, randomly swapping subtrees between parents.</li>
+            <li><b>Mutation:</b> Subtree mutation, replacing a random subtree with a new random tree.</li>
+            <li><b>Fitness Function:</b> By default, accuracy on the training set (optionally F1-score).</li>
+            <li><b>Termination:</b> Fixed number of generations (e.g., 30).</li>
+            <li><b>Prediction:</b> The best individual is used to classify test data.</li>
+            <li><b>Reproducibility:</b> User specifies a random seed.</li>
+            <li><b>Robustness:</b> Handles division by zero, limits tree depth.</li>
+            <li><b>Output:</b> Prints best evolved expression, accuracy, and F1-score for both training and testing data.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Statistical Test: Wilcoxon Signed-Rank Test</h2>
+        <p>To evaluate the significance of performance differences between GP and MLP, a Wilcoxon signed-rank test is performed on their predictions for the test set.</p>
+        <ul>
+            <li><b>Null hypothesis:</b> There is no significant difference in performance between GP and MLP.</li>
+            <li><b>Test statistic:</b> <span class="note">[To be filled after running the test]</span></li>
+            <li><b>p-value:</b> <span class="note">[To be filled after running the test]</span></li>
+            <li><b>Conclusion:</b> <span class="note">[Reject/Do not reject the null hypothesis at α = 0.05]</span></li>
+        </ul>
+        <div class="note">Note: This test requires both GP and MLP predictions. Once MLP is implemented, run the test using your Java implementation or a statistical tool.</div>
+    </div>
+
+    <div class="section">
+        <h2>How to Run the GP Classifier</h2>
+        <ol>
+            <li>Compile the code:<br>
+                <code>javac -d bin src/main/java/Main.java src/main/java/GeneticProgramming.java src/main/java/DataLoader.java src/main/java/Dataset.java src/main/java/EvaluationResult.java</code>
+            </li>
+            <li>Run the program:<br>
+                <code>java -cp bin Main</code>
+            </li>
+            <li>Enter the requested values when prompted (seed, data path, filenames).</li>
+            <li>Results (including best evolved expression, accuracy, and F1-score) will be printed to the console.</li>
+        </ol>
+    </div>
+</body>
+</html>
